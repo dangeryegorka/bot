@@ -76,7 +76,7 @@
 <body>
     <div id="main">
         <h1>Online delivery</h1>
-        <img src="" alt="">
+        <img src="logo.png" alt="#">
         <p>Lorem ipsum dolor sit amet.</p>
         <button id="buy">Buy</button>
     </div>
@@ -91,6 +91,7 @@
     let tg = window.Telegram.WebApp;
     let buy = document.getElementById("buy");
     let order = document.getElementById("order");
+    tg.expand();
 
     buy.addEventListener("click", () => {
         document.getElementById("main").style.display = "none";
@@ -99,6 +100,19 @@
         });
 
     order.addEventListener("click", () => {
+        let name = document.getElementById("user_name").value;
+        let number = document.getElementById("user_number").value;
+        let phone = document.getElementById("user_phone").value;
+
+        let data = {
+            name: name,
+            number: number,
+            phone: phone
+        }
+
+        tg.sendData(JSON.stringify(data));
+        tg.sendData('')
+
         tg.close();
         });
 </script>
